@@ -1,0 +1,17 @@
+
+#https://blog.csdn.net/weixin_38176039/article/details/80246141
+test: test.o    #(test)是目标文件 (:)是依赖的文件或者命令   (test.o) 是test依赖的文件
+    gcc -o test test.c 
+ 
+.PHONY: clean   #(.PHONY)是伪目标标记, 伪目标标记后的命令，不会和目录下文件重复,\
+                        也就是说clean如果没有伪目标标记的话,目录下有一个clean的文件\ 
+                        make clean将不会正确执行! 
+clean:
+    rm -fr *.o test
+#引用一段百度百科结合我上面的例子，说明一下吧
+
+#1 冒号（：）左边的test是目标文件 ， 目标文件依赖于冒号（：）右边， 
+
+#2 冒号右边即可以是文件test.o，也可以是目标，后面多文件多目录编译会讲到实例
+
+#3 第二行的gcc很明显是一个命令， 命令必须要以tab开头隔开 ， Makefile里的命令可以是任何的shell命令
