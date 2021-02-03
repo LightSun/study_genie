@@ -1,2 +1,4 @@
 gn
 bazel
+
+bin2c: 将bin文件或者图片 打包成c文件
