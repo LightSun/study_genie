@@ -1,0 +1,2 @@
+rootProject.name='gn_project_app'
+include ':app'
