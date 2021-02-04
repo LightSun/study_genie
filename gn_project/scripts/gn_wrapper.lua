@@ -16,7 +16,7 @@ project "gn_wrapper"
 		BX_DIR,
 		--addPath(BX_DIR, "system_wrappers/interface"),
 		addPath(BX_DIR, "modules/LogModule"),
-		--addPath(BX_DIR, "system_wrappers/source/spreadsortlib"), 
+		addPath(BX_DIR, "system_wrappers/source/spreadsortlib"), 
 	}
 	files{
 	   addPath(BX_DIR, "system_wrappers/source/**.cc"), 	  
@@ -80,7 +80,50 @@ project "gn_wrapper"
         defines{
             "CCORE_LINUX", "CCORE_THREAD_RR", "CCORE_POSIX"
         }
- 
+		
+    configuration {"osx-*"}
+	    defines{
+            "CCORE_MAC", "CCORE_THREAD_RR", "CCORE_POSIX", "CCORE_CLOCK_TYPE_REALTIME"
+        }
+		files{
+			addPath(BX_DIR, "system_wrappers/source/timer_oc.mm"), 
+		}
+		excludes{
+			addPath(BX_DIR, "system_wrappers/source/*_win.cc"), 			
+			addPath(BX_DIR, "system_wrappers/source/*_test_win.cc"),
+			addPath(BX_DIR, "system_wrappers/source/*_test_oc.cc"),
+			addPath(BX_DIR, "system_wrappers/source/*_test_posix.cc"),
+			addPath(BX_DIR, "system_wrappers/source/*_unittest.cc"),
+			addPath(BX_DIR, "system_wrappers/source/*_unittest_disabled.cc"),
+            addPath(BX_DIR, "system_wrappers/source/*_android.cc"), --android
+			addPath(BX_DIR, "system_wrappers/source/logcat_trace_context.cc"), -- android
+		}
+		links{
+		    --"ApplicationServices.framework"
+		}		
+		
+	configuration {"ios-*"}
+		defines{
+			"CCORE_IOS", "CCORE_THREAD_RR", "CCORE_POSIX", "CCORE_CLOCK_TYPE_REALTIME"
+		}
+		files{
+			addPath(BX_DIR, "system_wrappers/source/timer_oc.mm"), 
+		}
+		excludes{
+			addPath(BX_DIR, "system_wrappers/source/*_win.cc"), 
+			addPath(BX_DIR, "system_wrappers/source/*_mac.cc"),			
+			addPath(BX_DIR, "system_wrappers/source/*_test_win.cc"),
+			addPath(BX_DIR, "system_wrappers/source/*_test_oc.cc"),
+			addPath(BX_DIR, "system_wrappers/source/*_test_posix.cc"),
+			addPath(BX_DIR, "system_wrappers/source/*_unittest.cc"),
+			addPath(BX_DIR, "system_wrappers/source/*_unittest_disabled.cc"),
+			addPath(BX_DIR, "system_wrappers/source/*_android.cc"), --android
+			addPath(BX_DIR, "system_wrappers/source/logcat_trace_context.cc"), -- android
+		}
+		links{
+			--"ApplicationServices.framework"
+		}		
+		
 	
 	if _OPTIONS["enable_data_log"] then
 	    excludes{
