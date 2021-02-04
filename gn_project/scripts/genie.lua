@@ -14,7 +14,7 @@ newoption {
 	description = "Enable building tools.",
 }
 
---defines macro: GN_DLL _WIN32 CCORE_MAC CCORE_LINUX
+--defines macro: GN_DLL _WIN32 CCORE_MAC CCORE_LINUX CCORE_IOS
 solution "gn_core"
 	configurations {
 		"Debug",

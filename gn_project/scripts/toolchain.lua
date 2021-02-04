@@ -12,16 +12,16 @@ local function crtNone()
 	}
 
 	buildoptions {
-		"-nostdlib",
-		"-nodefaultlibs",
+		--"-nostdlib",
+		--"-nodefaultlibs",
 		"-nostartfiles",
 		"-Wa,--noexecstack",
 		"-ffreestanding",
 	}
 
 	linkoptions {
-		"-nostdlib",
-		"-nodefaultlibs",
+		--"-nostdlib",
+		--"-nodefaultlibs",
 		"-nostartfiles",
 		"-Wa,--noexecstack",
 		"-ffreestanding",

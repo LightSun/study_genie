@@ -77,6 +77,26 @@ Microsoft Windows operating system product.
 #ifndef GN_SYSTEM_WRAPPERS_SOURCE_THREAD_WINDOWS_SET_NAME_H_
 #define GN_SYSTEM_WRAPPERS_SOURCE_THREAD_WINDOWS_SET_NAME_H_
 
+#include <windows.h>
+//#include <exception>
+//#include <excpt.h>
+
+//------------- heaven7 start -------
+#ifndef RaiseException__pass
+#ifndef __in
+#define __in
+#endif
+static void RaiseException__pass(
+__in DWORD dwExceptionCode,
+__in DWORD dwExceptionFlags,
+__in DWORD nNumberOfArguments,
+__in const ULONG_PTR *lpArguments){
+	printf("exception caused by SetThreadName:: dwExceptionCode = %d", dwExceptionCode);
+}
+
+#endif
+//------------- heaven7 end -------
+
 namespace gn
 {
 
@@ -95,15 +115,20 @@ namespace gn
 		info.szName = szThreadName;
 		info.dwThreadID = dwThreadID;
 		info.dwFlags = 0;
-
-		__try
+		//mingw-windows doesn't support __try + __except. it is VC format
+		//https://github.com/zeromq/libzmq/pull/3601/commits/b3123a2fd1e77cbdceb5ee7a70e796063b5ee5b9
+        /*
+		__try 
 		{
-			RaiseException(0x406D1388, 0, sizeof(info) / sizeof(DWORD),
+		     RaiseException(0x406D1388, 0, sizeof(info) / sizeof(DWORD),
 				(ULONG_PTR*)&info);
 		}
 		__except (EXCEPTION_CONTINUE_EXECUTION)
 		{
-		}
+		}*/		
+
+        RaiseException__pass(0x406D1388, 0, sizeof(info) / sizeof(DWORD),
+				(ULONG_PTR*)&info);		
 	}
 }  // namespace gn
 #endif // GN_SYSTEM_WRAPPERS_SOURCE_THREAD_WINDOWS_SET_NAME_H_

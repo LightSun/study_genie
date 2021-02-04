@@ -1,4 +1,5 @@
 ﻿// An OS-independent sleep function.
+#include <cstring>
 #include "system_wrappers/interface/time_convert.h"
 
 namespace gn
