@@ -63,6 +63,24 @@ project "gn_wrapper"
 		defines{
 			"_WIN32", "WIN32", "CCORE_WIN"
 		}
+
+    configuration {"linux-*"}
+        excludes{
+			addPath(BX_DIR, "system_wrappers/source/*_oc.cc"), 
+			addPath(BX_DIR, "system_wrappers/source/*_mac.cc"),
+			addPath(BX_DIR, "system_wrappers/source/*_win.cc"), 			
+			addPath(BX_DIR, "system_wrappers/source/*_test_win.cc"),
+			addPath(BX_DIR, "system_wrappers/source/*_test_oc.cc"),
+			addPath(BX_DIR, "system_wrappers/source/*_test_posix.cc"),
+			addPath(BX_DIR, "system_wrappers/source/*_unittest.cc"),
+			addPath(BX_DIR, "system_wrappers/source/*_unittest_disabled.cc"),
+            addPath(BX_DIR, "system_wrappers/source/*_android.cc"), --android
+			addPath(BX_DIR, "system_wrappers/source/logcat_trace_context.cc"), -- android
+		} 
+        defines{
+            "CCORE_LINUX", "CCORE_THREAD_RR", "CCORE_POSIX"
+        }
+ 
 	
 	if _OPTIONS["enable_data_log"] then
 	    excludes{

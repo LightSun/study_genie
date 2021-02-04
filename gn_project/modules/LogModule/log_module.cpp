@@ -1,6 +1,7 @@
 ﻿#include "log_module.h"
 #include <list>
 #include <string>
+#include <cstdarg>
 using namespace std;
 #include "common_types.h"
 #include "system_wrappers/interface/atomic32.h"

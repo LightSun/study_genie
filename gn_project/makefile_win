@@ -2,37 +2,37 @@
 # Copyright 2011-2020 Branimir Karadzic. All rights reserved.
 # License: https://github.com/bkaradzic/bx#license-bsd-2-clause
 #
-UNAME := $(shell uname)
-ifeq ($(UNAME),$(filter $(UNAME),Linux GNU Darwin Haiku))
-ifeq ($(UNAME),$(filter $(UNAME),Darwin Haiku))
-ifeq ($(UNAME),$(filter $(UNAME),Darwin))
-OS=darwin
-BUILD_PROJECT_DIR=gmake-osx
-BUILD_OUTPUT_DIR=osx64_clang
-BUILD_TOOLS_CONFIG=release64
-EXE=
-else
-OS=haiku
-BUILD_PROJECT_DIR=gmake-haiku
-BUILD_OUTPUT_DIR=haiku64_gcc
-BUILD_TOOLS_CONFIG=release64
-EXE=
-endif
-else
-OS=linux
-BUILD_PROJECT_DIR=gmake-linux
-BUILD_OUTPUT_DIR=linux64_gcc
-BUILD_TOOLS_CONFIG=release64
-EXE=
-endif
-else
+#UNAME := $(shell uname)
+#ifeq ($(UNAME),$(filter $(UNAME),Linux GNU Darwin Haiku))
+#ifeq ($(UNAME),$(filter $(UNAME),Darwin Haiku))
+#ifeq ($(UNAME),$(filter $(UNAME),Darwin))
+#OS=darwin
+#BUILD_PROJECT_DIR=gmake-osx
+#BUILD_OUTPUT_DIR=osx64_clang
+#BUILD_TOOLS_CONFIG=release64
+#EXE=
+#else
+#OS=haiku
+#BUILD_PROJECT_DIR=gmake-haiku
+#BUILD_OUTPUT_DIR=haiku64_gcc
+#BUILD_TOOLS_CONFIG=release64
+#EXE=
+#endif
+#else
+#OS=linux
+#BUILD_PROJECT_DIR=gmake-linux
+#BUILD_OUTPUT_DIR=linux64_gcc
+#BUILD_TOOLS_CONFIG=release64
+#EXE=
+#endif
+#else
 OS=windows
 BUILD_PROJECT_DIR=gmake-mingw-gcc
 BUILD_OUTPUT_DIR=win32_mingw-gcc
 BUILD_TOOLS_CONFIG=release64
 EXE=.exe
 
-endif
+#endif
  $(info $(OS))
 
 GENIE=../gen_build_tools/$(OS)/genie

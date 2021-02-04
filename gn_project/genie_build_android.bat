@@ -7,7 +7,7 @@ SET ANDROID_NDK_X86=%ANDROID_NDK_ROOT%/toolchains/x86-4.9/prebuilt/windows-x86_6
 SET ANDROID_SDK_ROOT=D:/study/android/sdk
 SET GIT_BIN=D:/Program Files/Git/usr/bin
 SET PATH=%PATH%;%ANDROID_SDK_ROOT%/platform-tools;%GIT_BIN%
-make
+make -f makefile_win
 @rem make android-arm & make android-arm64 & make android-x86
-make android-arm64
+make -f makefile_win android-arm64
 @PAUSE
